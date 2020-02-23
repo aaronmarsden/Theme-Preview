@@ -1,0 +1,76 @@
+
+
+<div id="container">
+    <div id="sideNav">
+        <label for="sideNavSwitcherInput" id="sideNavSwitcherLabel">
+        <div id="sideNavSwitcher">
+            <input type="checkbox" id="sideNavSwitcherInput" style="display: none;" checked>
+                <i id="closePanelIcon" class="fas fa-chevron-left" title="Hide Panel"></i>
+                <i id="openPanelIcon" class="fas fa-chevron-right" title="Hide Panel"></i>
+        </div>
+        </label>
+        <div id="sideNavInside">
+            <div class="navbarBranding">
+                <a href="/<%=user._id%>/projects"><i class="fas fa-arrow-left navbarBrandingTable"></i></a>
+                <h3 class="navbarBrandingTable">Theme Preview </h3>
+                <i class="fas fa-bars navbarBrandingTable"></i>
+            </div>
+            <div class="inputParentContainer">
+                <p>Basic Inputs</p>
+                <form id="inputForm" action="/api/<%=template[0]._id%>/imageUpload" method="POST" enctype="multipart/form-data">
+                    <input autocomplete="disabled" type="text" placeholder="Top Headline" id="topHeadlineInput">
+                    <input type="text" placeholder="Subheadline" id="subHeadlineInput">
+                    <input type="text" placeholder="Button Text" id="buttonTextInput">
+                    <div class="avatar-upload">
+                        <p>Upload Logo Image</p>
+                        <div class="avatar-edit">
+                            <input type='file' id="imageUpload" name="logoImage" accept=".png, .jpg, .jpeg" />
+                            <label for="imageUpload"><i id="imageUploadIcon" class="fas fa-pencil-alt"></i></label>
+                        </div>
+                        <div class="avatar-preview">
+                            <div id="imagePreview" style="background-image: url(http://arabimagefoundation.com/images/defaultImage.png);">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="background-avatar-upload">
+                        <p>Upload Background Image</p>
+                        <div class="background-avatar-edit">
+                            <input type='file' id="background-imageUpload" name="backgroundImage" accept=".png, .jpg, .jpeg" />
+                            <label for="background-imageUpload"><i id="imageUploadIcon" class="fas fa-pencil-alt"></i></label>
+                        </div>
+                        <div class="background-avatar-preview">
+                            <div id="background-imagePreview">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="sidebarFooter">
+                <button form="inputForm" id="inputSubmit">UPDATE</button>
+            </div>
+        </div>
+    </div>
+    <div id="mainContainer">
+        
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<link rel="stylesheet" href="/style.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,900" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+<script>
+
+    var template = <%-JSON.stringify(template) %>;
+    var user = <%-JSON.stringify(user); %>;
+    var project = <%-JSON.stringify(project); %>
+    var template = <%-JSON.stringify(template); %>
+
+</script>
+
+<script src="/js/home.js"></script>
+
+<% include partials/footer %>

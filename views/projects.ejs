@@ -1,0 +1,102 @@
+<% include partials/header %>
+
+<link rel="stylesheet" href="/projects.css">
+
+<div class="projectHeaderContainer">
+    <h2>Your Projects</h2>
+    <button id="createProjectButton">Create New Project</button>
+</div>
+
+<div class="userProjects">
+    <% user.projects.forEach(function(project) { %>
+        <div class="project">
+            <img src="<%=project.logo%>" width="30%" alt="">
+            <p><%=project.name%></p>
+            <a href="/<%=user._id%>/projects/<%=project._id%>/edit">Edit Project</a>
+        </div>
+    <% }) %>
+</div>
+
+<div class="modal" id="modalContainer">
+    <div class="slides-container" id="slideContainer">
+        <form action="/<%=user._id%>/projects" method="POST" enctype="multipart/form-data">
+            <span class="btn btn__absolute btn__prev btn--muted">Back</span>
+            <span class="btn btn__absolute btn__next btn--highlighted projectNextButton">Next</span>
+            <button class="projectCreateButton btn btn__absolute">Done</button>
+            <section class="slide slide-1">
+                <article class="slide__inner__templates">
+                    <h2>What template would you like to use?</h1>
+                        <div class="slide__inner__template__container">
+                            <% templates.forEach(function(template) { %>
+                                <label for="<%=template.name%>">
+                                    <img src="<%=template.previewImage%>"  width="50%" alt="">
+                                    <p><%=template.name%></p>
+                                    <input type="radio" id="<%=template.name%>" value="<%=template.name%>" name="template">
+                                </label>
+                            <% }) %>
+                        </div>
+                </article>
+            </section>
+            <section class="slide slide-2">
+                <article class="slide__inner slide--left">
+                    <div class="container container--slide-1">
+
+                    </div>
+                </article>
+                <article class="slide__inner slide--right">
+                    <h2>What's the name of your project?</h1>
+                        <input type="text" name="project[name]" placeholder="Project Name" required>
+                </article>
+            </section>
+            <section class="slide slide-3">
+                <article class="slide__inner slide--left">
+
+                </article>
+                <article class="slide__inner slide--right">
+                    <h2>Now let's upload your logo:</h2>
+                    <div class="avatar-upload">
+                        <p>Upload Logo Image</p>
+                        <div class="avatar-edit">
+                            <input type='file' name="projectLogo" id="imageUpload" accept=".png, .jpg, .jpeg"
+                                required />
+                            <label for="imageUpload"><i id="imageUploadIcon" class="fas fa-pencil-alt"></i></label>
+                        </div>
+                        <div class="avatar-preview">
+                            <div id="imagePreview"
+                                style="background-image: url(http://arabimagefoundation.com/images/defaultImage.png);">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+            <section class="slide slide-4">
+                <article class="slide__inner slide--left">
+                    <div class="container container--slide-3">
+
+                    </div>
+                </article>
+                <article class="slide__inner slide--right">
+                    <h2>Now, what are the main colors of your brand?</h2>
+                    <input type="text" name="project[colorOne]" placeholder="Color One (ex. #FFFFFF)" required>
+                    <input type="text" name="project[colorTwo]" placeholder="Color Two (ex. #FFFFFF)" required>
+                    <input type="text" name="project[colorThree]" placeholder="Color Three (ex. #FFFFFF)" required>
+                </article>
+            </section>
+            <section class="slide slide-5">
+                <article class="slide__inner slide--left">
+
+                </article>
+                <article class="slide__inner slide--right">
+                    <h2>Now let's create your project!</h2>
+                </article>
+            </section>
+        </form>
+    </div>
+    <section class="pagination"> </section>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="/js/projects.js"></script>
+
+<% include partials/footer %>
